@@ -321,7 +321,7 @@ autocomplete(document.getElementById("project"), countries);
 
 									 <!--footer section start-->
 										<footer>
-										   <!-- <p>&copy <?= date('Y')?> Holding Bricks . All Rights Reserved | Design by <a href="#" target="_blank">Digilance5</a></p> -->
+										    <p>&copy <?= date('Y')?> Holding Bricks . All Rights Reserved <!--| Design by <a href="#" target="_blank">Digilance5</a>--></p> 
 										</footer>
 									<!--footer section end-->
 								</div>
