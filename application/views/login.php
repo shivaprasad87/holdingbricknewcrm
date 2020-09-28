@@ -103,7 +103,7 @@
 												<div class="error-btn">
 															
 															</div>
-										   <p>&copy <?= date('Y')?> Holding Bricks . All Rights Reserved | Design by <a href="#" target="_blank">Digilance5</a></p>
+										   <!-- <p>&copy <?= date('Y')?> Holding Bricks . All Rights Reserved | Design by <a href="#" target="_blank">Digilance5</a></p> -->
 										</div>
 									<!--footer section end-->
 									<!--/404-->
