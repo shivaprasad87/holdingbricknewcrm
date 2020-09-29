@@ -1365,7 +1365,7 @@
 
 									 <!--footer section start-->
 										<footer>
-										   <p>&copy <?= date('Y')?> Holding Bricks . All Rights Reserved | Design by <a href="#" target="_blank">Holding Bricks.</a></p>
+										   <p>&copy <?= date('Y')?> Holding Bricks . All Rights Reserved | Design by <!-- <a href="#" target="_blank">Holding Bricks.</a> --></p>
 										</footer>
 									<!--footer section end-->
 								</div>
