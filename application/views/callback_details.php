@@ -539,7 +539,7 @@ Team Holding Bricks Services Pvt Ltd
                 <?php } ?>
                 <div class="clearfix"></div>
                 <?php
-                if($this->session->userdata('user_type')!='admin')
+                if($this->session->userdata('user_type')!='admin' && $this->session->userdata('user_type')=='remove it if need')
                         {?>
                <div class="col-sm-12 clint_req" style="background: #b9bdc04f;margin-bottom: 30px; padding-bottom: 10px;" <?php if($manage_status==2) echo ''; else echo 'hidden'; ?>>
                     <h1 class="text-center" >Client Requirement</h1>
@@ -1451,7 +1451,7 @@ e.preventDefault();
 
         console.log(data);
         var a = $("#m_dept").val();
-        var status_id = $('#m_status').val();
+        var status_id = 0;//$('#m_status').val();
 
     if(a==1 && status_id==2)
     {
@@ -1532,7 +1532,7 @@ e.preventDefault();
             $('#abc').hide();
             $('#close').hide();
             $('#dead').hide();
-            $('.clint_req').show(); 
+            //$('.clint_req').show(); 
 
         } else{
             $('#close').hide();
