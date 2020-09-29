@@ -709,7 +709,7 @@ Team Holding Bricks Services Pvt Ltd
                      <?php
                     if($this->session->userdata('user_type')!='admin')
                         {?>
-                    <div id="clientKYC" class="col-md-12 form-group">
+                    <!-- <div id="clientKYC" class="col-md-12 form-group">
                             <input type="hidden" id="callback_id_kyc" name="callback_id_kyc" value="<?= $id ?>">
                             <br>
                             <div class="col-md-12 form-group">
@@ -770,7 +770,7 @@ Team Holding Bricks Services Pvt Ltd
                                 <input type="hidden" name="" id="user_id" value="<?=$this->session->userdata('user_id');?>">
                                 <button type="button" onclick="customer_kyc()" class="btn btn-success">Send</button>
                             </div>
-                        </div>
+                        </div> -->
                         <?php
                     }
                     ?>
