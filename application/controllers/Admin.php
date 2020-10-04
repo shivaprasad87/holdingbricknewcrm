@@ -2432,8 +2432,8 @@ if($this->input->post('budget')!='')
 		$url =  "https://www.99acres.com/99api/v1/getmy99Response/OeAuXClO43hwseaXEQ/uid/";
 		//$data = $this->common_model->load_l_s_credentials('99acre');
 		//print_r($data);die;
-		$username = 'city.99';
-		$password = 'Shashank1986';
+		// $username = 'city.99';
+		// $password = 'Shashank1986';
 		$start_date = date("Y-m-d 00:00:00", strtotime('-1 days'));
 		$end_date = date("Y-m-d 23:59:59");
 		$request = "<?xml version='1.0'?><query><user_name>$username</user_name><pswd>$password</pswd><start_date>$start_date</start_date><end_date>$end_date</end_date></query>";
