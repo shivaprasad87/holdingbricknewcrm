@@ -66,7 +66,17 @@
                 <?php } ?>
             </select>
         </div>
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-3 form-group">
+            <label for="city">City:</label>
+            <select id="city_name" class="form-control" required="required">
+                <option value="">Select</option>
+                <?php 
+                foreach ($active_cities as $city) { ?>
+                    <option value="<?php echo $city->id; ?>"><?php echo $city->name; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="col-sm-3 form-group">
             <button type="submit" id="add_project" style="margin-top:25px;" class="btn btn-success btn-block" onclick="add()">Add Project</button>
         </div>
     </div>
@@ -77,6 +87,7 @@
                 <th>Project Id</th>
                 <th>Project Name</th>
                 <th>Builder Name</th>
+                <th>City</th>
                 <th>Date Added</th>
                 <th>Status</th>
             </tr>
@@ -88,6 +99,7 @@
                         <td><?php echo $project->id; ?></td>
                         <td><?php echo $project->name; ?></td>
                         <td><?php echo $project->builder_name; ?></td>
+                        <td><?php  if(empty($project->city_name)){echo '-----';}else {echo $project->city_name;} ?></td>
                         <td><?php echo $project->date_added; ?></td>
                         <td align="middle"><button type="button" id="b1<?php echo $project->id; ?>" class="btn <?php echo $project->active?'btn-info':'btn-danger'; ?>" onclick="change_status(<?php echo $project->id; ?>)"><span id="projectus_sp_<?php echo $project->id; ?>"><?php echo $project->active?'Active':'Inactive'; ?></span></button></td>
                     </tr>
@@ -105,12 +117,19 @@
                     $('#builder').focus();
                     return false;
                 }
+                if($('#active_cities').val() == ""){
+                    alert("Please select a City");
+                    $('#active_cities').focus();
+                    return false;
+                }
+                
                 $.ajax({
                     type:"POST",
                     url: "<?php echo base_url()?>admin/add_project",
                     data:{
                         project:project,
-                        builder:$('#builder').val()
+                        builder:$('#builder').val(),
+                        city_id:$('#city_name').val()
                     },
                     success:function(data){
                         alert("add successful");
@@ -312,79 +331,6 @@
 
 
 </script>
-<script>
-    $(document).ready(function() {
-         $('#example').DataTable({
-              "paging":   false,
-              "info": false
  
-        });
-        if (!Modernizr.inputtypes.date) {
-            // If not native HTML5 support, fallback to jQuery datePicker
-            $('input[type=date]').datepicker({
-                // Consistent format with the HTML5 picker
-                    dateFormat : 'dd/mm/yy'
-                }
-            );
-        }
-        if (!Modernizr.inputtypes.time) {
-            // If not native HTML5 support, fallback to jQuery timepicker
-            $('input[type=time]').timepicker({ 'timeFormat': 'H:i' });
-        }
-        $('#revenueMonth').MonthPicker({
-            Button: false
-        });
-      
-
-        $("#refresh").click(function(){
-            $(".se-pre-con").show();
-            $.get("<?php echo base_url(); ?>dashboard/get_live_feed_back", function(response){
-                $("#live_feed_back_body").html(response);
-                $(".se-pre-con").hide("slow");
-            });
-        });
-
-        $("#overdue_lead_count").click(function(){
-            var form = document.createElement('form');
-            form.method = "POST";
-            form.action = "<?php echo base_url()."dashboard/generate_report" ?>";
-            
-            var input = document.createElement('input');
-            input.type = "text";
-            input.name = "toDate";
-            input.value = $(this).data('datetime');
-            form.appendChild(input);
-
-            input = document.createElement('input');
-            input.type = "text";
-            input.name = "reportType";
-            input.value = "due";
-            form.appendChild(input);
-
-            document.body.appendChild(form);
-            form.submit();
-        });
-
-        $('.emailSiteVisit').on('click', function(){
-            $(".se-pre-con").show();
-            $.ajax({
-                type : 'POST',
-                url : "<?= base_url('site-visit-report-mail');?>",
-                data:1,
-                success: function(res){
-                    $(".se-pre-con").hide("slow");
-                    if(res == 1)
-                        alert('Email Sent Successfully.');
-                    else
-                        alert('Email Sent fail!');
-                }
-            });
-        });
-
-    });
-    // $('#filter_revenue').click(get_revenues());
-
-   
-</script>
 </body>
 </html>
