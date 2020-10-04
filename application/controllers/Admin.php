@@ -2432,13 +2432,13 @@ if($this->input->post('budget')!='')
 		$url =  "https://www.99acres.com/99api/v1/getmy99Response/OeAuXClO43hwseaXEQ/uid/";
 		//$data = $this->common_model->load_l_s_credentials('99acre');
 		//print_r($data);die;
-		// $username = 'city.99';
-		// $password = 'Shashank1986';
+		$username = 'HBPL.99';
+		$password = 'Sanav1234';
 		$start_date = date("Y-m-d 00:00:00", strtotime('-1 days'));
 		$end_date = date("Y-m-d 23:59:59");
 		$request = "<?xml version='1.0'?><query><user_name>$username</user_name><pswd>$password</pswd><start_date>$start_date</start_date><end_date>$end_date</end_date></query>";
 		$allParams = array('xml'=>$request);
-		$leads = $this->get99AcresLeads();
+		$leads = $this->get99AcresLeads($allParams,$url);
 		//print_r($leads); die;
 		$data=array();
 		$i=0;
@@ -2503,12 +2503,13 @@ if($this->input->post('budget')!='')
 			$checked=$this->input->post('check');
 
 			foreach ($checked as $key) {
-				$return[] = $key;
+				$return[] = $key; 
 				$lead_data = $this->common_model->getFromId($key, 'id', 'online_leads');
+				//print_r($lead_data);die;
 				if($lead_data->source=='99acres')
 				{
 				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,1);
-				if($p_id=='')
+				if($p_id['id']=='')
 					$p_id['id']=1;
 				}
 				elseif($lead_data->source=='Magicbricks')
@@ -2528,6 +2529,7 @@ if($this->input->post('budget')!='')
 					//$p_id=703;
 				}
 				//echo $lead_data->project. $p_id['id'];die;
+
 				$data=$this->common_model->getsourceId($lead_data->source);
 
 				$data=array(
@@ -2587,9 +2589,17 @@ if($this->input->post('budget')!='')
 		}
 		//echo json_encode($return);
 	}
-
-	function get99AcresLeads(){
+function get99AcresLeads($allParams,$url){
+		$crl = curl_init($url);
+		curl_setopt ($crl, CURLOPT_POST, 1);
+		curl_setopt ($crl, CURLOPT_POSTFIELDS, $allParams);
+		curl_setopt ($crl, CURLOPT_RETURNTRANSFER,1);
+		return curl_exec ($crl);
+	}
+/*	function get99AcresLeads($param){
 		$curl = curl_init();
+		$start_date = date("Y-m-d 00:00:00", strtotime('-1 days'));
+		$end_date = date("Y-m-d 23:59:59"); 
  
 curl_setopt_array($curl, array(
   CURLOPT_URL => "http://www.99acres.com/99api/v1/getmy99Response/OeAuXClO43hwseaXEQ/uid/",
@@ -2599,7 +2609,7 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "xml=<?xml version='1.0'?><query><user_name>countryside99</user_name><pswd>ind123</pswd><start_date>2020-02-12 00:00:00</start_date><end_date>2020-02-13 23:59:59</end_date></query>",
+  CURLOPT_POSTFIELDS => "<?xml version='1.0'?><query><user_name>$username</user_name><pswd>$password</pswd><start_date>$start_date</start_date><end_date>$end_date</end_date></query>",
   CURLOPT_HTTPHEADER => array( 
     "content-type: application/x-www-form-urlencoded",
   ),
@@ -2614,11 +2624,11 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
+  echo $response; die;
 	}
 
-	return $info;
-}
+	return $response;
+}*/
 	function dead_leads_reassign(){
 		if($this->input->post('chkValues')) {
 			$valuesArry = json_decode($this->input->post('chkValues'), true);
