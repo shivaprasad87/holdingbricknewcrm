@@ -2535,10 +2535,10 @@ if($this->input->post('budget')!='')
 				$data=$this->common_model->getsourceId($lead_data->source);
 
 				$data=array(
-					'dept_id'=>$dept,
+					'dept_id'=>1,
 					'name'=>$lead_data->name,
 					'contact_no1'=>$lead_data->phone,
-					'callback_type_id'=>$callback_type,
+					'callback_type_id'=>1,
 					'email1'=>$lead_data->email,
 					'project_id'=>$p_id['id'],
 					'lead_source_id'=>$data['id'],
@@ -2546,7 +2546,7 @@ if($this->input->post('budget')!='')
 					'user_id'=>$user,
 					'due_date'=>$due_date,
 					'broker_id'=>$broker,
-					'status_id'=>$status,
+					'status_id'=>1,
 					'notes'=>$lead_data->notes,
 					'date_added'=>date('Y-m-d H:i:s'),
 				);
