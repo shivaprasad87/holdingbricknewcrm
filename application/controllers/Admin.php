@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -2513,19 +2512,19 @@ if($this->input->post('budget')!='')
 				{
 				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,1);
 				if($p_id['id']=='')
-					$p_id['id']=1;
+					$p_id['id']=88;
 				}
 				elseif($lead_data->source=='Magicbricks')
 				{
 				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,2);
 				if($p_id=='')
-					$p_id['id']=2;
+					$p_id['id']=88;
 				}
 				elseif($lead_data->source=='Commonfloor')
 				{
 				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,3);
 				if($p_id=='')
-					$p_id['id']=3;
+					$p_id['id']=88;
 				}
 				else
 				{
