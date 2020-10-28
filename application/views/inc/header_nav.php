@@ -67,7 +67,7 @@ $i=1;
                             {
                               if($cModule['module']=='Online Leads')
                              echo '<li><a href="'.$baseLink.'" '.$aAttr.'>'.$cModule['module'].'<span class="caret"></span></a>
-                           <ul><li><a href="'.base_url('admin/acres99_leads').'">99 Acres</a></li><a href="'.base_url('admin/online_leads').'">Online Leads</a></li></ul>
+                           <ul><li><a href="'.base_url('admin/acres99_leads').'">99 Acres</a></li><a href="'.base_url('admin/ppc_leads').'">GOOGLE PPC</a></li></ul>
                            </li>';
                               else
                                  echo '<li><a href="'.$baseLink.'">'.$cModule['module'].'</a></li>';

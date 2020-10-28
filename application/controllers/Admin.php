@@ -2292,6 +2292,31 @@ if($this->input->post('budget')!='')
 		//$data['projects']= $this->common_model->all_active_projects();
 		
 	}
+		public function ppc_leads()
+	{  
+		$data['name'] ="more";
+		$data['heading'] ="Goolge PPC Online Callbacks";
+		$rowCount 				= $this->common_model->count_onlineleads('online_leads','GOOGLE PPC');
+			$data["totalRecords"] 	= $rowCount;
+			$data["links"] 			= paginitaionWithQueryString(base_url().'admin/ppc_leads/', 3, VIEW_PER_PAGE, $rowCount, $this->input->get());
+			//print_r($data["links"])	
+			$page = $this->uri->segment(3);
+	        $offset = !$page ? 0 : $page;
+			//------ End --------------
+			// $data['result'] = $this->callback_model->getCallbackLists($clause, $offset, VIEW_PER_PAGE);
+		$data['leads'] = $this->common_model->get_online_leads('online_leads','GOOGLE PPC',VIEW_PER_PAGE,$offset);
+		if (empty($data['leads'])) {
+			$data['name'] = "index";
+     echo "<script>alert('no leads in GOOGLE PPC');</script>";
+     $this->load->view('admin/online_leads',$data);
+		}
+		else
+		{ 
+		$this->load->view('admin/online_leads',$data);
+		}
+		//$data['projects']= $this->common_model->all_active_projects();
+		
+	}
 	public function magicbricks_leads()
 	{
 		$leadsdata_magicbrick=$this->magic_brick_api();
